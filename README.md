@@ -25,6 +25,26 @@ import Scrollbar from 'react-smooth-scrollbar-z'
 ##### `simple`
 
 ```js
+    // const root = useRef(null);
+    <Scrollbar
+        // ref={root}
+        alwaysShowTracks
+        overEffect={"bounce" | "glow"} // plugin = overscroll
+    >
+        { something1...  }
+    </Scrollbar>
+
+    <Scrollbar
+        alwaysShowTracks
+        plugins={{
+          overscroll: {
+            effect: 'bounce',
+          } as const
+        }}>
+        { something1...  }
+    </Scrollbar>
+
+    // dosomething
     <Scrollbar
         alwaysShowTracks
         height="100px"
@@ -35,12 +55,22 @@ import Scrollbar from 'react-smooth-scrollbar-z'
         continuousScrolling={boolean}
         wheelEventTarget={element}
         // overEffect={"bounce" | "glow"}
-        // plugins={object}
-        onScroll={func}
+        onScroll={() => console.log('pabcd')}
       >
       { something1...  }
     </Scrollbar>
 ```
+
+
+<br />
+<br />
+
+#### plugins
+Options for plugins, see [Plugin](https://github.com/idiotWu/smooth-scrollbar/blob/master/docs/plugin.md).
+
+#### options
+ScrollbarOptions: from [smooth-scrollbar/interfaces](https://github.com/idiotWu/smooth-scrollbar/blob/master/src/interfaces/scrollbar.ts)
+
 
 
 #### RUN
