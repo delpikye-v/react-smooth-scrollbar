@@ -25,7 +25,7 @@ import Scrollbar from 'react-smooth-scrollbar-z'
 ##### `simple`
 
 ```js
-    <ReactSmoothScrollbar
+    <Scrollbar
         alwaysShowTracks
         height="100px"
         width="200px"
@@ -39,7 +39,7 @@ import Scrollbar from 'react-smooth-scrollbar-z'
         onScroll={func}
       >
       { something1...  }
-    </ReactSmoothScrollbar>
+    </Scrollbar>
 ```
 
 
