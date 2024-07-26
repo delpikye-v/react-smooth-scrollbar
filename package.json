@@ -1,6 +1,6 @@
 {
   "name": "react-smooth-scrollbar-z",
-  "version": "2.1.0-z",
+  "version": "2.1.1",
   "description": "React wrap scrollbar (Smooth Scrollbar-Hook)",
   "main": "build/index.js",
   "module": "build/index.esm.js",
@@ -77,6 +77,6 @@
     "typescript": "^4.4.2"
   },
   "dependencies": {
-    "smooth-scrollbar": "^8.7.4"
+    "smooth-scrollbar": ">=8.7.4"
   }
 }

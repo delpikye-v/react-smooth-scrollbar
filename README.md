@@ -19,7 +19,6 @@ Import the module in the place you want to use:
 import Scrollbar from 'react-smooth-scrollbar-z'
 ```
 
-
 #### Snippet
 
 ##### `simple`
