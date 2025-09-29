@@ -1,7 +1,8 @@
 {
   "name": "react-smooth-scrollbar-z",
-  "version": "2.1.1",
-  "description": "React wrap scrollbar (Smooth Scrollbar-Hook)",
+  "type": "module",
+  "version": "3.0.0-zx",
+  "description": "A React wrapper for Smooth Scrollbar with hooks and plugin support",
   "main": "build/index.js",
   "module": "build/index.esm.js",
   "browser": "build/index.js",
@@ -14,67 +15,56 @@
   "scripts": {
     "clean": "rimraf ./build",
     "build": "rollup -c",
-    "cb": "npm run clean && npm run build",
-    "test:watch": "jest --watch",
-    "storybook": "start-storybook -p 6006",
-    "storybook:export": "build-storybook",
-    "generate": "node ./util/create-component",
-    "prepublishOnly": "npm run build"
+    "cb": "npm run clean && npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/delpikye-v/react-smooth-scrollbar.git"
+    "url": "https://github.com/delpikye-v/react-smooth-scrollbar-z.git"
   },
-  "homepage": "https://github.com/delpikye-v/react-smooth-scrollbar#readme",
+  "homepage": "https://github.com/delpikye-v/react-smooth-scrollbar-z#readme",
   "keywords": [
     "react",
-    "components",
+    "scrollbar",
     "custom-scrollbar",
     "smooth-scrollbar",
-    "scrollbar",
-    "scrollbar-smooth",
-    "react-custom-scrollbar",
-    "react-smooth-scrollbar",
-    "react-scrollbar-smooth",
-    "react-scrollbar-custom",
-    "react-scrollbar"
+    "react-scrollbar",
+    "scrollbar-react",
+    "scrollbar-hook",
+    "react-scrollbar-hook",
+    "scrollbar-plugin",
+    "react-scroll-plugin",
+    "virtual-scroll",
+    "overscroll",
+    "scrollbar-component",
+    "react-ui",
+    "scrollbar-smooth"
   ],
   "author": "Delpi.Kye",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/delpikye-v/react-smooth-scrollbar/issues"
+    "url": "https://github.com/delpikye-v/react-smooth-scrollbar-z/issues"
   },
   "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+    "react": ">=17.0.0 <20.0.0",
+    "react-dom": ">=17.0.0 <20.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.0",
-    "@rollup/plugin-commonjs": "^17.1.0",
-    "@rollup/plugin-node-resolve": "^11.2.1",
-    "@storybook/react": "^6.3.7",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.7",
-    "@types/jest": "^24.9.1",
-    "@types/react": "^16.14.14",
-    "@types/react-dom": "^16.9.14",
-    "babel-loader": "^8.2.2",
-    "babel-preset-react-app": "^10.0.0",
+    "@babel/core": "^7.22.0",
+    "@rollup/plugin-commonjs": "^24.1.0",
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "babel-loader": "^9.1.3",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^26.6.3",
-    "node-sass": "^5.0.0",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.56.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rimraf": "^5.0.0",
+    "rollup": "^3.20.0",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-postcss": "^3.1.8",
-    "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-typescript2": "^0.29.0",
-    "sass-loader": "^10.2.0",
-    "ts-jest": "^26.5.6",
-    "typescript": "^4.4.2"
+    "rollup-plugin-typescript2": "^0.34.0",
+    "typescript": "^5.2.0"
   },
   "dependencies": {
     "smooth-scrollbar": ">=8.7.4"
