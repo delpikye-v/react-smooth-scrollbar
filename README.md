@@ -1,7 +1,7 @@
-## React Smooth Scrollbar
+## ✨ react-smooth-scrollbar-z
 
-A customizable React scrollbar library with **NeoScrollbar** and **Scrollbar** components, built using **Smooth Scrollbar** with plugin support.
-
++ A modern, fully customizable React scrollbar library featuring NeoScrollbar and Scrollbar components
++ Powered by Smooth Scrollbar – smooth, flexible, and plugin-ready.
 ---
 
 [![NPM](https://img.shields.io/npm/v/react-smooth-scrollbar-z.svg)](https://www.npmjs.com/package/react-smooth-scrollbar-z)
@@ -10,7 +10,7 @@ A customizable React scrollbar library with **NeoScrollbar** and **Scrollbar** c
 
 ---
 
-### 🚀 Live Demo
+### 🌟 Live Demo
 
 👉 [Codesandbox](https://codesandbox.io/s/8c5vzo)
 
@@ -18,82 +18,166 @@ A customizable React scrollbar library with **NeoScrollbar** and **Scrollbar** c
 
 ## 🚀 Features
 
-- **NeoScrollbar:** Lightweight, simple, smooth scrollbar.
-- **Scrollbar:** Extended features with hover scaling, always visible option, and full plugin support.
-- **Plugin System:** Overscroll, EdgeBounce, FadeScroll, Minimap, Momentum, Resize, ScrollHint, StickyScroll, VirtualScroll, MouseWheel, Wheel, and more.
-- Fully customizable: thumb color, size, hover size, track color, and opacity.
-- Smooth, responsive scrolling.
-- React `ref` exposes a full API for programmatic control.
-- Optimize: >=3.0.0 (Suggestion using AI)
+- NeoScrollbar: Lightweight, sleek, and smooth scrollbar for basic use.
+
+- Scrollbar: Advanced, fully-featured scrollbar with hover scaling, always-visible option, and full plugin support.
+
+- Smooth & Responsive: Natural inertia and momentum scrolling for a polished user experience.
+
+- Fully Customizable: Configure thumb color, size, hover scale, track color, opacity, and more.
+
+- Dynamic Plugin System: Supports plugins like FadeScroll, HighlightItem, GradientIndicator, ScrollBlur, OverscrollGlow, BounceEffect, and others.
+
+- Lazy Plugin Loading: Plugins are loaded on-demand for optimal performance.
+
+- React Integration: React hooks (useNeoScrollbar) and refs provide full programmatic control (scroll to top, bottom, or any position).
+
+- SSR-Safe: Works seamlessly in server-side rendered applications.
+
+- Optimized for Modern React: Ready for React >=3.0.0 (AI-suggested best practices).
 
 ---
 
-## 📦 Installation
+### 📦 Installation
 
 ```bash
-npm install react-smooth-scrollbar-z smooth-scrollbar
+npm install react-smooth-scrollbar-z
 ```
 
 ---
 
-## 🛠 Usage
+### ⚡ Quick Example
+
+```ts
+import React, { useRef } from "react";
+import { NeoScrollbar } from "react-smooth-scrollbar-z";
+
+function App() {
+  const scrollRef = useRef(null);
+
+  return (
+    <NeoScrollbar
+      ref={scrollRef}
+      height="300px"
+      thumbColor="rgba(0,0,0,0.3)"
+      thumbHoverColor="rgba(0,0,0,0.7)"
+      showOnHover
+    >
+      <div style={{ height: "1000px" }}>Scrollable Content Here</div>
+    </NeoScrollbar>
+  );
+}
+```
+
+### 🛠 Plugins
 
 ```tsx
 import React, { useRef } from "react";
-import { Scrollbar, NeoScrollbar } from "react-smooth-scrollbar-z";
-// Scrollbar: FullScrollbar
+import { NeoScrollbar, Scrollbar } from "react-smooth-scrollbar-z";
+import {
+  GradientIndicatorPlugin,
+  HighlightItemPlugin,
+  ScrollBlurPlugin,
+} from "react-smooth-scrollbar-z";
 
-const App = () => {
-  const content = Array.from({ length: 50 }, (_, i) => (
-    <div key={i} style={{ padding: "10px", borderBottom: "1px solid #ccc" }}>
-      Item {i + 1}
-    </div>
-  ));
+import type { IFScrollbarHandle, IFNeoScrollbarHandle } from "react-smooth-scrollbar-z";
 
-  const neoRef = useRef(null);
-  const fullRef = useRef(null);
+const content = Array.from({ length: 50 }, (_, i) => (
+  <div
+    key={i}
+    className="item"
+    style={{
+      padding: "10px",
+      borderBottom: "1px solid #ccc",
+      background: i % 2 === 0 ? "#f5f5f5" : "#fff",
+    }}
+  >
+    Item {i + 1}
+  </div>
+));
+
+function AppScrollbar() {
+  const neoRef = useRef<IFNeoScrollbarHandle>(null);
+  const fullRef = useRef<IFScrollbarHandle>(null);
 
   return (
-    <div style={{ display: "flex", gap: "20px", padding: "20px" }}>
-      <div style={{ flex: 1 }}>
-        <h3>NeoScrollbar</h3>
-        <NeoScrollbar
-          ref={neoRef}
-          height="300px"
-          thumbColor="rgba(0,0,0,0.3)"
-          thumbHoverColor="rgba(0,0,0,0.7)"
-          thumbSize="8px"
-          showOnHover
-          visibleOpacity={0.8}
-        >
-          {content}
-        </NeoScrollbar>
-      </div>
+    <div style={{ padding: "20px", fontFamily: "sans-serif" }}>
+      <div style={{ display: "flex", gap: "40px" }}>
+        <div style={{ flex: 1 }}>
+          <div style={{ marginBottom: "10px" }}>
+            <button onClick={() => neoRef.current?.scrollToTop?.()}>Scroll Top</button>
+            <button onClick={() => neoRef.current?.scrollToBottom?.()} style={{ marginLeft: 10 }}>
+              Scroll Bottom
+            </button>
+          </div>
+          <NeoScrollbar
+            ref={neoRef}
+            height="300px"
+            thumbColor="rgba(0,0,0,0.3)"
+            thumbHoverColor="rgba(0,0,0,0.7)"
+            thumbSize="10px"
+            showOnHover
+            alwaysShowTracks
+            trackColor="transparent"
+            visibleOpacity={0.8}
+            plugins={{
+              scrollBlur: { blurAmount: 5, duration: 300, zIndex: 1000 },
+            }}
 
-      <div style={{ flex: 1 }}>
-        <h3>Scrollbar</h3>
-        <Scrollbar
-          ref={fullRef}
-          height="300px"
-          thumbColor="rgba(0,0,0,0.3)"
-          thumbHoverColor="rgba(0,0,0,0.7)"
-          thumbSize="8px"
-          thickness={8}
-          thumbHoverSize={16}
-          showOnHover
-          visibleOpacity={0.8}
-        >
-          {content}
-        </Scrollbar>
+            pluginLoaders={{
+              scrollBlur: () => Promise.resolve(ScrollBlurPlugin),
+            }}
+          >
+            {content}
+          </NeoScrollbar>
+        </div>
+
+        <div style={{ flex: 1 }}>
+          <div style={{ marginBottom: "10px" }}>
+            <button onClick={() => fullRef.current?.scrollToTop?.()}>Scroll Top</button>
+            <button onClick={() => fullRef.current?.scrollToBottom?.()} style={{ marginLeft: 10 }}>
+              Scroll Bottom
+            </button>
+          </div>
+          <Scrollbar
+            ref={fullRef}
+            height="300px"
+            thumbColor="rgba(0,0,0,0.3)"
+            thumbHoverColor="rgba(0,0,0,0.7)"
+            thumbSize="12px"
+            trackSize="12px"
+            thumbHoverSize={16}
+            showOnHover
+            visibleOpacity={0.8}
+
+            plugins={{
+              highlightItem: { selector: ".item", className: "highlighted", mode: "center" },
+              gradientIndicator: {
+                height: 30,                  
+                color: "rgba(0,0,0,0.2)",   
+                fadeDuration: 300,          
+              }
+            }}
+
+            pluginLoaders={{
+              highlightItem: () => Promise.resolve(HighlightItemPlugin),
+              gradientIndicator: () => Promise.resolve(GradientIndicatorPlugin),
+            }}
+          >
+            {content}
+          </Scrollbar>
+        </div>
       </div>
     </div>
   );
-};
+}
 
-export default App;
+export default AppScrollbar;
+
+
 ```
 
-## 🛠 Hooks
+### 🛠 Hooks
 
 ```tsx
 useFullScrollbar(options) – returns { ref, initScrollbar, api } // Scrollbar
@@ -103,9 +187,9 @@ useNeoScrollbar(options) – returns { ref, api }
 
 ---
 
-## ⚙️ Props
+### ⚙️ Props
 
-### Common Props
+#### Common Props
 
 | Prop              | Type      | Default             | Description                     |                            |
 | ----------------- | --------- | ------------------- | ------------------------------- | -------------------------- |
@@ -121,7 +205,7 @@ useNeoScrollbar(options) – returns { ref, api }
 | `visibleOpacity`  | `number`  | `1`                 | Track opacity (0→1)             |                            |
 | `plugins`         | `object`  | `{}`                | SmoothScrollbar plugins object  |                            |
 
-### API (via ref)
+#### API (via ref)
 
 - `scrollTo(x: number, y: number, duration?: number)`
 - `scrollToTop(duration?: number)`
@@ -132,10 +216,10 @@ useNeoScrollbar(options) – returns { ref, api }
 - `getScrollbar(): Scrollbar | null` **(Scrollbar)**
 - `disableScroll()` / `enableScroll()` **(Scrollbar)**
 - `setSpeed(multiplier: number)` **(Scrollbar)**
-
+- etc...
 ---
 
-## 🔌 Plugins
+### 🔌 Plugins
 
 Available plugins (can be used with Scrollbar via `plugins` prop):
 
@@ -146,34 +230,12 @@ Available plugins (can be used with Scrollbar via `plugins` prop):
 - `minimap`
 - `fadeScroll`
 - `scrollHint`
-- `scrollProgress`
-- `sticky`
-- `edgeBounce`
-- `wheel`
-- `mouseWheel`
-- `contentSize`
-- `momentum`
-- `virtualScroll`
+- etc... see pluginLoaders
 
 **Usage:**
 
-```ts
-import {
-  OverscrollPlugin,
-  MinimapPlugin,
-  FadeScrollPlugin,
-} from "react-smooth-scrollbar-z";
-
-<Scrollbar
-  height="300px"
-  plugins={{ overscroll: OverscrollPlugin, minimap: MinimapPlugin }}
->
-  {content}
-</Scrollbar>;
-```
-
 ---
 
-## 📋 License
+### 📋 License
 
 MIT
